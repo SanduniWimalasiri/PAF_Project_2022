@@ -1,0 +1,5 @@
+package com.example.PBGS.repository;
+
+public interface AdminRepository {
+
+}
