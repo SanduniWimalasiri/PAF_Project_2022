@@ -32,32 +32,32 @@ public class PaymentController {
 	private PaymentRepository paymentRepository;
 	
 	//get all employees
-	@GetMapping("/payments")
+	@GetMapping("/payments:IT20457020")
 	public List<Payment> getAllPayments(){
 		return paymentRepository.findAll();
 	}
 	
 	//add payment details
-	@PostMapping("/payments")
+	@PostMapping("/payments:IT20457020")
 	public Payment makePayment (@RequestBody Payment payment) {
 		return paymentRepository.save(payment);
 	}
 	
 	
 	//get payment by id rest api
-	@GetMapping("/payments/{id}")
-	public ResponseEntity<Payment> getPaymentById(@PathVariable Long id) {
-		Payment payment = paymentRepository.findById(id)
-				.orElseThrow(() -> new ResourseNotFoundException("Payment Not Exist with ID :" + id));
+	@GetMapping("/payments:IT20457020/{payment_id}")
+	public ResponseEntity<Payment> getPaymentById(@PathVariable Long payment_id) {
+		Payment payment = paymentRepository.findById(payment_id)
+				.orElseThrow(() -> new ResourseNotFoundException("Payment Not Exist with ID :" + payment_id));
 		return ResponseEntity.ok(payment);
 	}
 	
 	//update payment rest API
-	@PutMapping("payments/{id}")
-	public ResponseEntity<Payment> updatePayment(@PathVariable Long id, @RequestBody Payment paymentDetails){
-		Payment payment = paymentRepository.findById(id)
-				.orElseThrow(() -> new ResourseNotFoundException("Payment Not Exist with ID :" + id));
-		payment.setBill_id(paymentDetails.getBill_id());
+	@PutMapping("payments:IT20457020/{payment_id}")
+	public ResponseEntity<Payment> updatePayment(@PathVariable Long payment_id, @RequestBody Payment paymentDetails){
+		Payment payment = paymentRepository.findById(payment_id)
+				.orElseThrow(() -> new ResourseNotFoundException("Payment Not Exist with ID :" + payment_id));
+		payment.setPayment_id(paymentDetails.getPayment_id());
 		payment.setCus_name(paymentDetails.getCus_name());
 		payment.setEmial(paymentDetails.getEmail());
 		payment.setArea_office(paymentDetails.getArea_office());
@@ -69,10 +69,10 @@ public class PaymentController {
 	}
 	
 	//delete payment rest API
-	@DeleteMapping("/payments/{id}")
-	public ResponseEntity<Map<String, Boolean>> deletePayment(@PathVariable Long id){
-		Payment payment = paymentRepository.findById(id)
-				.orElseThrow(() -> new ResourseNotFoundException("Payment Not Exist with ID :" + id));
+	@DeleteMapping("/payments:IT20457020/{payment_id}")
+	public ResponseEntity<Map<String, Boolean>> deletePayment(@PathVariable Long payment_id){
+		Payment payment = paymentRepository.findById(payment_id)
+				.orElseThrow(() -> new ResourseNotFoundException("Payment Not Exist with ID :" + payment_id));
 	paymentRepository.delete(payment);
 	Map<String, Boolean> response = new HashMap<>();
 	response.put("Deleted Successfully", Boolean.TRUE);

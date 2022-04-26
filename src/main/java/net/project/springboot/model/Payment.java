@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	private long bill_id;
+	private long payment_id;
 	
 	@Column(name = "customer_name")
 	private String cus_name;
@@ -30,24 +30,29 @@ public class Payment {
 	@Column(name = "pay_amount")
 	private long amount;
 	
+	@Column(name = "bill_id")
+	private long bill_id;
+	
 	public Payment (){
 		
 	}
 	
 	
-	public Payment(String cus_name, String email, String area_office, long card_num, long amount) {
+	public Payment(String cus_name, String email, String area_office, long card_num, long amount, long bill_id) {
 		super();
 		this.cus_name = cus_name;
 		this.email = email;
 		this.area_office = area_office;
 		this.card_num = card_num;
 		this.amount = amount;
-	}
-	public long getBill_id() {
-		return bill_id;
-	}
-	public void setBill_id(long bill_id) {
 		this.bill_id = bill_id;
+	}
+	
+	public long getPayment_id() {
+		return payment_id;
+	}
+	public void setPayment_id(long payment_id) {
+		this.payment_id = payment_id;
 	}
 	public String getCus_name() {
 		return cus_name;
@@ -81,5 +86,15 @@ public class Payment {
 		this.amount = amount;
 	}
 
+	public long getBill_id() {
+		return bill_id;
+	}
+
+
+	public void setBill_id(long bill_id) {
+		this.bill_id = bill_id;
+	}
+
+	
 	
 }
